@@ -1,0 +1,15 @@
+<% include ./backend/bk.header.html %>
+
+</head>
+
+<div class="row">
+    <form class="col-md-12" role="form">
+        <legend><%= label %></legend>
+	    <div class="form-group">
+	        <textarea class="form-control" rows="9" id="c_editor" name="c_editor" <%= (movie?'"movie=' + movie + '"':'') %>></textarea>
+        </div>
+	    <button id="c_save" type="button" class="btn btn-primary">保存</button>
+    <form>
+</div>
+
+<% include footer.html %>
