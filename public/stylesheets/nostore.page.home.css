@@ -1,0 +1,29 @@
+ /* 热门推荐 */
+ @media screen and (max-width: 767px) {
+     .mod_hot .panel-body {
+         position: relative;
+     }
+     .mod_hot .panel-body .row {
+         margin-left: -25px;
+         margin-right: -25px;
+         white-space: nowrap;
+         overflow-x: scroll;
+     }
+     .mod_hot .panel-body .row > div {
+         white-space: nowrap;
+         display: inline-block;
+         float: none;
+     }
+ }
+ .mod_hot .panel-body {
+    padding-bottom: 5px;
+ }
+ .mod_hot .hot_row {
+     padding: 0 5px;
+ }
+ .mod_hot .hot_item {
+     padding: 0 5px;
+ }
+ .mod_hot .hot_item .thumbnail {
+     margin-bottom: 5px;
+ }

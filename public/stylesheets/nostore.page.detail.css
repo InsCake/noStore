@@ -1,0 +1,40 @@
+/* detail main ----------------------------------- */
+/* 商品图片 */
+@media screen and (min-width: 767px) {
+    .detail_commdity-pic .pic_item 			{ overflow: hidden; }
+    .detail_commdity-pic .pic_item img 		{ height: 363px; max-height: 363px; }
+    .detail_commdity-pic .pic_tab-items 	{ padding: 0; overflow-y: hidden; }
+    .detail_commdity-pic .pic_tab-item 		{ padding: 0; height: 62px; overflow: hidden; text-align: center; line-height: 60px; border: 1px solid #eee; border-top: 0; }
+	.detail_commdity-pic .pic_tab-item:first-child 	{ border-top: 1px solid #eee; }
+	.detail_commdity-pic .pic_tab-item img 	{ display: inline-block; width: 60px; max-width: 60px; }
+}
+@media screen and (max-width: 766px) { 
+	.detail_commdity-pic .pic_tab-items 	{ white-space: nowrap; overflow-x: scroll; }
+	.detail_commdity-pic .pic_tab-item 		{ white-space: nowrap; display: inline-block; float: none; }
+	.detail_commdity-pic .pic_tab-item img 	{ height: 200px; max-height: 200px; }
+}
+/* 商品简介 */
+.detail_commodity-info h1 				{ font-size: 14px; margin: 0; padding: 0; overflow: hidden; max-height: 30px; }
+.detail_commodity-info .tag  			{ font-size: 12px; margin-top: 5px; line-height: 1; }
+.detail_commodity-info .price em		{ font-size: 22px; font-weight: 300; }
+.detail_commodity-info .seller			{ font-size: 12px; }
+@media screen and (min-width: 767px) {
+	.detail_commodity-info 				{ position: relative; height: 373px; }
+	.detail_commodity-info .call 		{ position: absolute; bottom: 0; }
+	.detail_commodity-info .like,
+	.detail_commodity-info .share,
+	.detail_commodity-info .complaint	{ margin-top: 20px; }
+	.detail_commodity-info .buy-online,
+	.detail_commodity-info .seller		{ margin-top: 10px; }
+	.detail_commodity-info .time		{ font-size: 12px; color: #999; }
+}
+@media screen and (max-width: 766px) {
+	.detail_commodity-info .price,
+	.detail_commodity-info .like,
+	.detail_commodity-info .share,
+	.detail_commodity-info .buy-online		{ margin-top: 10px; }
+}
+/* 更多详情 */
+@media screen and (min-width: 767px) {
+	.margin-up393 				{ margin-top: -393px; }
+}

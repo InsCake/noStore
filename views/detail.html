@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>noStore</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/nostore.common.css">
+    <link rel="stylesheet" href="/stylesheets/nostore.page.detail.css">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+</head>
+
+<body>
+    <div class="container row-offcanvas row-offcanvas-left">
+
+        <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <div class="col-xs-2 visible-xs btn-group">
+                <button type="button" class="btn btn-default" data-toggle="offcanvas">返回</button>
+            </div>
+            <div class="col-xs-8 col-sm-9 ns_topnav_center hidden-xs">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">首页</button>
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".navbar-collapse-mine">我的</button>
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".navbar-collapse-search">搜索</button>
+                </div>
+            </div>
+
+            <!-- 导航中部下拉列表 -->
+            <div class="row">
+                <div class="col-xs-12 navbar-collapse-mine collapse">
+                    <ul class="nav">
+                        <li><a href="#">购物车</a>
+                        </li>
+                        <li><a href="#">我的订单</a>
+                        </li>
+                        <li><a href="#">个人中心</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-12 navbar-collapse-search collapse">
+                    <ul class="nav">
+                        <li><a href="/">搜索</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- 主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- 面包屑 -->
+        <div class="row hidden-xs">
+            <ol class="col-sm-9 breadcrumb">
+                <li><a href="#">Home</a>
+                </li>
+                <li><a href="#">Library</a>
+                </li>
+                <li class="active">Data</li>
+            </ol>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-9 col-lg-8">
+                <div class="row detail_commdity-pic">
+                    <!-- Tab panes -->
+                    <div class="col-sm-10 col-lg-11 hidden-xs tab-content pic_items">
+                        <% var pics_url = commodity.commodity_pic_urls.split(';');
+                        for (var i = 0; i < pics_url.length - 1; i++) {
+                            if (i === 0) { %>
+                                <div class="tab-pane thumbnail pic_item active" id="pic_<%= i %>">
+                                    <img src="<%= pics_url[i] %>">
+                                </div>
+                            <% } else { %>
+                                <div class="tab-pane thumbnail pic_item" id="pic_<%= i %>">
+                                    <img src="<%= pics_url[i] %>">
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <!-- Nav tabs -->
+                    <div class="col-sm-2 col-lg-1 pic_tab-items">
+                        <% for (var i = 0; i < pics_url.length - 1; i++) { %>
+                            <a class="col-sm-12 pic_tab-item" href="#pic_<%= i %>" data-toggle="tab">
+                                <img src="<%= pics_url[i] %>">
+                            </a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-lg-4">
+                <div class="panel panel-default detail_commodity-info">
+                    <div class="panel-heading">
+                        <h1><%= commodity.commodity_name %>&nbsp;-&nbsp;<%= commodity.commodity_subtitle %></h1>
+                        <div class="tag">
+                            <% for (var i = 0; i < topics.length; i++) { %>
+                                <a href="#">#<%= topics[i].topic_name %></a>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="time pull-right hidden-xs">
+                            <span><%= commodity.commodity_time_pub %></span>
+                        </div>
+                        <div class="seller col-xs-12 off-padding">
+                            <span>by&nbsp;<a href="#"><%= commodity.seller_name %></a>
+                            </span>
+                            <span>!<a href="#"><%= commodity.commodity_position %></a>
+                            </span>
+                        </div>
+                        <div class="price col-xs-4 col-sm-12 off-padding color-red">
+                            <span>&yen;
+                                <em><%= commodity.commodity_price %></em>
+                            </span>
+                        </div>
+                        <div class="like col-xs-2 col-sm-5 off-padding">
+                            <button type="button" class="btn btn-default btn-block"><span><%= likes_count %></span>喜欢</button>
+                        </div>
+                        <div class="share col-xs-2 col-sm-5 off-padding">
+                            <button type="button" class="btn btn-default btn-block">分享</button>
+                        </div>
+                        <div class="complaint col-xs-2 col-sm-2 hidden-xs off-padding">
+                            <button type="button" class="btn btn-default btn-block">举报</button>
+                        </div>
+                        <div class="buy-online col-xs-4 col-sm-12 off-padding">
+                            <button type="button" class="btn btn-default btn-block">线上购买</button>
+                        </div>
+                        <div class="call col-xs-12 off-padding">
+                            <button type="button" class="btn btn-default">CALL</button>
+                            <span><%= commodity.seller_phone %></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-9 col-lg-8 <% if (pics_url.length - 1 === 0) { %>margin-up393<% } %>">
+                <div class="detail_more">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li><a href="#detail-info" data-toggle="tab">详细信息</a>
+                        </li>
+                        <li><a href="#discuss" data-toggle="tab">讨论</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="detail-info"><%= commodity.commodity_detail_info %></div>
+                        <div class="tab-pane" id="discuss">讨论...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    </div>
+    <!--/.container-->
+
+
+</body>
+
+
+<script src="/javascripts/jquery-2.1.0.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/nostore.page.home.js"></script>
+<script src="/javascripts/holder.min.js"></script>
+
+</body>
+
+</html>

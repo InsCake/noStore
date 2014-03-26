@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>noStore</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/nostore.common.css">
+    <link rel="stylesheet" href="/stylesheets/nostore.page.list.css">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+</head>
+
+<body>
+    <div class="container row-offcanvas row-offcanvas-left">
+
+        <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <div class="col-xs-2 visible-xs btn-group">
+                <button type="button" class="btn btn-default" data-toggle="offcanvas">类目</button>
+            </div>
+            <div class="col-xs-8 col-sm-9 ns_topnav_center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">首页</button>
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".navbar-collapse-mine">我的</button>
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".navbar-collapse-search">搜索</button>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-3 btn-group">
+                <button type="button" class="btn btn-default pull-right">筛选</button>
+            </div>
+
+            <!-- 导航中部下拉列表 -->
+            <div class="row">
+                <div class="col-xs-12 navbar-collapse-mine collapse">
+                    <ul class="nav">
+                        <li><a href="#">购物车</a>
+                        </li>
+                        <li><a href="#">我的订单</a>
+                        </li>
+                        <li><a href="#">个人中心</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-12 navbar-collapse-search collapse">
+                    <ul class="nav">
+                        <li><a href="/">搜索</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- 首页主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- 面包屑 -->
+        <div class="row hidden-xs">
+            <ol class="col-sm-9 breadcrumb">
+                <li><a href="#">Home</a>
+                </li>
+                <li><a href="#">Library</a>
+                </li>
+                <li class="active">Data</li>
+            </ol>
+        </div>
+
+        <div class="row">
+            <!-- 左侧 主栏 -->
+            <div class="col-xs-12 col-sm-9">
+
+                <!-- 首页列表 -->
+                <div class="mod_list_home">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="panel-title">相关商品</span>
+                        </div>
+                        <div class="panel-body">
+
+                            <% for (var i = 0; i < commoditys.length; i++) { %>
+                            <div class="row list-good">
+                                <a href="/detail/<%= commoditys[i].commodity_id %>" class="col-xs-4 col-sm-2">
+                                    <% var pics_url = commoditys[i].commodity_pic_urls.split(';'); %>
+                                    <img src="<%= pics_url[0] %>" width="75" height="75">
+                                </a>
+                                <div class="col-xs-8 col-sm-10">
+                                    <a href="/detail/<%= commoditys[i].commodity_id %>">
+                                        <h5 class="title"><%= commoditys[i].commodity_name %>&nbsp;-&nbsp;<%= commoditys[i].commodity_subtitle %></h5>
+                                    </a>
+                                    <div>
+                                        <span class="seller">by
+                                            <a href="#"><%= commoditys[i].seller_name %></a>
+                                        </span>
+                                        <span class="position">
+                                            <a href="#"><%= commoditys[i].commodity_position %></a>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="price">
+                                            <em><%= commoditys[i].commodity_price %></em>元</span>
+                                        </span>
+                                        <span class="category">
+                                            <span><%= commoditys[i].commodity_category %></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    </div>
+    <!--/.container-->
+
+
+</body>
+
+
+<script src="/javascripts/jquery-2.1.0.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/nostore.page.home.js"></script>
+<script src="/javascripts/holder.min.js"></script>
+
+</body>
+
+</html>

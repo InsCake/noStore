@@ -1,0 +1,173 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'less@latest' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose cache add [ 'less@latest', null ]
+5 verbose cache add name=undefined spec="less@latest" args=["less@latest",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'less@latest',
+6 verbose parsed url   path: 'less@latest',
+6 verbose parsed url   href: 'less@latest' }
+7 verbose cache add name="less" spec="latest" args=["less","latest"]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'latest',
+8 verbose parsed url   path: 'latest',
+8 verbose parsed url   href: 'latest' }
+9 verbose addNamed [ 'less', 'latest' ]
+10 verbose addNamed [ null, null ]
+11 silly lockFile d8c46e27-less-latest less@latest
+12 verbose lock less@latest /Users/cake/.npm/d8c46e27-less-latest.lock
+13 info addNameTag [ 'less', 'latest' ]
+14 verbose url raw less
+15 verbose url resolving [ 'https://registry.npmjs.org/', './less' ]
+16 verbose url resolved https://registry.npmjs.org/less
+17 info trying registry request attempt 1 at 11:38:02
+18 verbose etag "2NX156IC1OPJKAL85JHZJLKEC"
+19 http GET https://registry.npmjs.org/less
+20 http 304 https://registry.npmjs.org/less
+21 silly registry.get cb [ 304,
+21 silly registry.get   { date: 'Thu, 20 Mar 2014 03:38:01 GMT',
+21 silly registry.get     server: 'Apache',
+21 silly registry.get     via: '1.1 varnish',
+21 silly registry.get     'last-modified': 'Thu, 20 Mar 2014 03:38:01 GMT',
+21 silly registry.get     'cache-control': 'max-age=1',
+21 silly registry.get     etag: '"2NX156IC1OPJKAL85JHZJLKEC"',
+21 silly registry.get     'x-served-by': 'cache-ty68-TYO',
+21 silly registry.get     'x-cache': 'HIT',
+21 silly registry.get     'x-cache-hits': '2',
+21 silly registry.get     'x-timer': 'S1395286681.717960119,VS0,VE0',
+21 silly registry.get     vary: 'Accept',
+21 silly registry.get     'content-length': '0',
+21 silly registry.get     'keep-alive': 'timeout=10, max=50',
+21 silly registry.get     connection: 'Keep-Alive' } ]
+22 verbose etag less from cache
+23 verbose addNamed [ 'less', '1.7.0' ]
+24 verbose addNamed [ '1.7.0', '1.7.0' ]
+25 silly lockFile 85b8cb6f-less-1-7-0 less@1.7.0
+26 verbose lock less@1.7.0 /Users/cake/.npm/85b8cb6f-less-1-7-0.lock
+27 silly lockFile 85b8cb6f-less-1-7-0 less@1.7.0
+28 silly lockFile 85b8cb6f-less-1-7-0 less@1.7.0
+29 silly lockFile d8c46e27-less-latest less@latest
+30 silly lockFile d8c46e27-less-latest less@latest
+31 silly resolved [ { name: 'less',
+31 silly resolved     version: '1.7.0',
+31 silly resolved     description: 'Leaner CSS',
+31 silly resolved     homepage: 'http://lesscss.org',
+31 silly resolved     author: { name: 'Alexis Sellier', email: 'self@cloudhead.net' },
+31 silly resolved     contributors: [ [Object] ],
+31 silly resolved     bugs: { url: 'https://github.com/less/less.js/issues' },
+31 silly resolved     repository: { type: 'git', url: 'https://github.com/less/less.js.git' },
+31 silly resolved     licenses: [ [Object] ],
+31 silly resolved     bin: { lessc: './bin/lessc' },
+31 silly resolved     main: './lib/less/index',
+31 silly resolved     directories: { test: './test' },
+31 silly resolved     jam: { main: './dist/less-1.6.3.js' },
+31 silly resolved     engines: { node: '>=0.8.0' },
+31 silly resolved     scripts: { test: 'grunt test' },
+31 silly resolved     optionalDependencies:
+31 silly resolved      { mime: '1.2.x',
+31 silly resolved        request: '>=2.33.0',
+31 silly resolved        mkdirp: '~0.3.5',
+31 silly resolved        'clean-css': '2.1.x',
+31 silly resolved        'source-map': '0.1.x' },
+31 silly resolved     devDependencies:
+31 silly resolved      { diff: '~1.0',
+31 silly resolved        grunt: '~0.4.2',
+31 silly resolved        'grunt-contrib-clean': '~0.5.0',
+31 silly resolved        'grunt-contrib-concat': '~0.3.0',
+31 silly resolved        'grunt-contrib-connect': '~0.6.0',
+31 silly resolved        'grunt-contrib-jasmine': '~0.5.2',
+31 silly resolved        'grunt-contrib-jshint': '~0.8.0',
+31 silly resolved        'grunt-contrib-uglify': '~0.3.2',
+31 silly resolved        'grunt-shell': '~0.6.4',
+31 silly resolved        'http-server': '~0.6.1',
+31 silly resolved        matchdep: '~0.3.0',
+31 silly resolved        'time-grunt': '~0.2.9' },
+31 silly resolved     keywords:
+31 silly resolved      [ 'compile less',
+31 silly resolved        'css nesting',
+31 silly resolved        'css variable',
+31 silly resolved        'css',
+31 silly resolved        'gradients css',
+31 silly resolved        'gradients css3',
+31 silly resolved        'less compiler',
+31 silly resolved        'less css',
+31 silly resolved        'less mixins',
+31 silly resolved        'less',
+31 silly resolved        'less.js',
+31 silly resolved        'lesscss',
+31 silly resolved        'mixins',
+31 silly resolved        'nested css',
+31 silly resolved        'parser',
+31 silly resolved        'preprocessor',
+31 silly resolved        'bootstrap css',
+31 silly resolved        'bootstrap less',
+31 silly resolved        'style',
+31 silly resolved        'styles',
+31 silly resolved        'stylesheet',
+31 silly resolved        'variables in css',
+31 silly resolved        'css less' ],
+31 silly resolved     readme: '[![Build Status](https://travis-ci.org/less/less.js.png?branch=master)](https://travis-ci.org/less/less.js)\n# [Less.js v1.6.3](http://lesscss.org)\n\n> The **dynamic** stylesheet language. [http://lesscss.org](http://lesscss.org).\n\nThis is the JavaScript, and now official, stable version of Less.\n\n\n## Getting Started\n\nOptions for adding Less.js to your project:\n\n* Install with [NPM](https://npmjs.org/): `npm install less`\n* [Download the latest release][download]\n* Clone the repo: `git clone git://github.com/less/less.js.git`\n\n## More information\n\nFor general information on the language, configuration options or usage visit [lesscss.org](http://lesscss.org).\n\nHere are other resources for using Less.js:\n\n* [stackoverflow.com][so] is a great place to get answers about Less.\n* [Less.js Issues][issues] for reporting bugs\n\n\n## Contributing\nPlease read [CONTRIBUTING.md](./CONTRIBUTING.md). Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).\n\n### Reporting Issues\n\nBefore opening any issue, please search for existing issues and read the [Issue Guidelines](https://github.com/necolas/issue-guidelines), written by [Nicolas Gallagher](https://github.com/necolas/). After that if you find a bug or would like to make feature request, [please open a new issue][issues].\n\nPlease report documentation issues in [the documentation project](https://github.com/less/less-docs).\n\n### Development\n\nRead [Developing Less](http://lesscss.org/usage/#developing-less).\n\n## Release History\nSee the [changelog](CHANGELOG.md)\n\n## [License](LICENSE)\n\nCopyright (c) 2009-2014 [Alexis Sellier](http://cloudhead.io/) & The Core Less Team\nLicensed under the [Apache License](LICENSE).\n\n\n[so]: http://stackoverflow.com/questions/tagged/twitter-bootstrap+less "StackOverflow.com"\n[issues]: https://github.com/less/less.js/issues "GitHub Issues for Less.js"\n[download]: https://github.com/less/less.js/zipball/master "Download Less.js"\n',
+31 silly resolved     readmeFilename: 'README.md',
+31 silly resolved     dependencies:
+31 silly resolved      { mime: '1.2.x',
+31 silly resolved        request: '>=2.33.0',
+31 silly resolved        mkdirp: '~0.3.5',
+31 silly resolved        'clean-css': '2.1.x',
+31 silly resolved        'source-map': '0.1.x' },
+31 silly resolved     _id: 'less@1.7.0',
+31 silly resolved     _from: 'less@latest' } ]
+32 info install less@1.7.0 into /usr/local/lib
+33 info installOne less@1.7.0
+34 info /usr/local/lib/node_modules/less unbuild
+35 verbose tar unpack /Users/cake/.npm/less/1.7.0/package.tgz
+36 silly lockFile 7a611c47--usr-local-lib-node-modules-less tar:///usr/local/lib/node_modules/less
+37 verbose lock tar:///usr/local/lib/node_modules/less /Users/cake/.npm/7a611c47--usr-local-lib-node-modules-less.lock
+38 silly lockFile 64cd0a52--cake-npm-less-1-7-0-package-tgz tar:///Users/cake/.npm/less/1.7.0/package.tgz
+39 verbose lock tar:///Users/cake/.npm/less/1.7.0/package.tgz /Users/cake/.npm/64cd0a52--cake-npm-less-1-7-0-package-tgz.lock
+40 silly gunzTarPerm modes [ '755', '644' ]
+41 error Error: EACCES, mkdir '/usr/local/lib/node_modules/less'
+41 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/less']
+41 error   errno: 3,
+41 error   code: 'EACCES',
+41 error   path: '/usr/local/lib/node_modules/less',
+41 error   fstream_type: 'Directory',
+41 error   fstream_path: '/usr/local/lib/node_modules/less',
+41 error   fstream_class: 'DirWriter',
+41 error   fstream_stack:
+41 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+41 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+41 error      'Object.oncomplete (fs.js:107:15)' ] }
+42 error Please try running this command again as root/Administrator.
+43 error System Darwin 13.1.0
+44 error command "node" "/usr/local/bin/npm" "install" "-g" "less@latest"
+45 error cwd /Users/cake/Lab/Tools/bootstrap-3.0.3/less
+46 error node -v v0.10.26
+47 error npm -v 1.4.3
+48 error path /usr/local/lib/node_modules/less
+49 error fstream_path /usr/local/lib/node_modules/less
+50 error fstream_type Directory
+51 error fstream_class DirWriter
+52 error code EACCES
+53 error errno 3
+54 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/less'
+55 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+55 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+55 error fstream_stack Object.oncomplete (fs.js:107:15)
+56 verbose exit [ 3, true ]
