@@ -7,60 +7,15 @@
 <!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>noStore</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="/stylesheets/nostore.common.css">
+    <% include mod.head.html %>
     <link rel="stylesheet" href="/stylesheets/nostore.page.list.css">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
 </head>
 
 <body>
     <div class="container row-offcanvas row-offcanvas-left">
 
         <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <nav class="navbar navbar-fixed-top" role="navigation">
-            <div class="col-xs-2 visible-xs btn-group">
-                <button type="button" class="btn btn-default" data-toggle="offcanvas">类目</button>
-            </div>
-            <div class="col-xs-8 col-sm-9 ns_topnav_center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default">首页</button>
-                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".navbar-collapse-mine">我的</button>
-                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".navbar-collapse-search">搜索</button>
-                </div>
-            </div>
-            <div class="col-xs-2 col-sm-3 btn-group">
-                <button type="button" class="btn btn-default pull-right">筛选</button>
-            </div>
-
-            <!-- 导航中部下拉列表 -->
-            <div class="row">
-                <div class="col-xs-12 navbar-collapse-mine collapse">
-                    <ul class="nav">
-                        <li><a href="#">购物车</a>
-                        </li>
-                        <li><a href="#">我的订单</a>
-                        </li>
-                        <li><a href="#">个人中心</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-12 navbar-collapse-search collapse">
-                    <ul class="nav">
-                        <li><a href="/">搜索</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+        <% include mod.nav.s1_main.html %>
 
         <!-- 首页主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- 面包屑 -->
@@ -80,10 +35,12 @@
 
                 <!-- 首页列表 -->
                 <div class="mod_list_home">
+                    <div class="btn-group">
+                        <a href="<%= req_path + '?key=' + req_query.key %>&sort=time_pub" class="btn btn-default" role="button">最新</a>
+                        <a href="<%= req_path + '?key=' + req_query.key %>&sort=viewed" class="btn btn-default" role="button">人气</a>
+                        <a href="<%= req_path + '?key=' + req_query.key %>&sort=price" class="btn btn-default" role="button">价格</a>
+                    </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="panel-title">相关商品</span>
-                        </div>
                         <div class="panel-body">
 
                             <% for (var i = 0; i < commoditys.length; i++) { %>
@@ -121,8 +78,11 @@
                 </div>
 
             </div>
-        </div>
 
+            <!-- 画布外类目列表 -->
+            <% include mod.cate.offcanvas.html %>
+
+        </div>
     </div>
 
     <hr>
@@ -137,9 +97,7 @@
 
 </body>
 
-
-<script src="/javascripts/jquery-2.1.0.min.js"></script>
-<script src="/javascripts/bootstrap.min.js"></script>
+<% include mod.script.html %>
 <script src="/javascripts/nostore.page.home.js"></script>
 <script src="/javascripts/holder.min.js"></script>
 

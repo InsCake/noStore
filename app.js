@@ -60,6 +60,7 @@ app.get('/', routes.home);
 app.get('/detail/:id', routes.detail);
 app.get('/search', routes.search);
 app.get('/topic/:id', routes.topic);
+app.get('/cart', routes.cart);
 app.all('/login', notAuthentication);
 app.get('/login', routes.login);
 app.post('/login', routes.doLogin);

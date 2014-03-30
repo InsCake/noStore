@@ -4,7 +4,37 @@
 var mysql = require('mysql');
 var mysql_config = require('./../models/mysql_config');
 
+exports.cart = function(req, res) {
+    console.log(req.session.user);
+    // mysql connection
+    var conn = mysql.createConnection(mysql_config.conn_config);
+    conn.connect();
+    var options = {
+        sql: "SELECT * FROM commodity INNER JOIN seller ON commodity.seller_id = seller.id",
+        nestTables: '_'
+    };
+    conn.query(options, function(err, rows) {
+        if (err) console.log(err);
+        if (rows.length > 0) {
+            var commoditys = rows;
+            console.log(rows[0]);
+            res.render('cart', {
+                'title': 'Express',
+                'commoditys': commoditys
+            });
+        } else { //无结果操作
+        }
+        conn.end();
+    });
+};
 exports.search = function(req, res) {
+    console.log(req.session.user);
+    //判断是否有排序参数
+    if(req.query.sort) {
+        var order_clause = "ORDER BY " + req.query.sort;
+    } else {
+        order_clause = "";
+    }
     // mysql connection
     var conn = mysql.createConnection(mysql_config.conn_config);
     conn.connect();
@@ -17,7 +47,7 @@ exports.search = function(req, res) {
         " WHERE commodity.name LIKE '%" + req.query.key + "%' " + 
         " OR commodity.subtitle LIKE '%" + req.query.key + "%' " + 
         " OR commodity.category LIKE '%" + req.query.key + "%' " + 
-        " OR tag.name LIKE '%" + req.query.key + "%' ",
+        " OR tag.name LIKE '%" + req.query.key + "%' " + order_clause,
         nestTables: '_'
     };
     console.log(req.query.key);
@@ -28,7 +58,9 @@ exports.search = function(req, res) {
             console.log(commoditys);
             res.render('list', {
                 'title': 'Express',
-                'commoditys': commoditys
+                'commoditys': commoditys,
+                'req_path': req.path,
+                'req_query': req.query
             });
         } else { //无结果操作
         }
@@ -36,6 +68,7 @@ exports.search = function(req, res) {
     });
 };
 exports.topic = function(req, res) {
+    console.log(req.session.user);
     // mysql connection
     var conn = mysql.createConnection(mysql_config.conn_config);
     conn.connect();
@@ -58,6 +91,7 @@ exports.topic = function(req, res) {
     });
 };
 exports.home = function(req, res) {
+    console.log(req.session.user);
     // mysql connection
     var conn = mysql.createConnection(mysql_config.conn_config);
     conn.connect();
@@ -80,6 +114,7 @@ exports.home = function(req, res) {
     });
 };
 exports.detail = function(req, res) {
+    console.log(req.session.user);
     // mysql connection
     var conn = mysql.createConnection(mysql_config.conn_config);
     conn.connect();
@@ -159,7 +194,7 @@ exports.doLogin = function(req, res) {
                 password: req.body.password
             };
             req.session.user = user;
-            return res.redirect('/home');
+            return res.redirect('/');
         } else {
             req.session.error = '用户名或密码不正确';
             return res.redirect('/login');

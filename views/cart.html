@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.cart.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <% include mod.nav.s1_main.html %>
+
+        <!-- 首页主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- 面包屑 -->
+        <div class="row hidden-xs">
+            <ol class="col-md-9 breadcrumb">
+                <li><a href="#">Home</a>
+                </li>
+                <li><a href="#">Library</a>
+                </li>
+                <li class="active">Data</li>
+            </ol>
+        </div>
+
+        <div class="row">
+            <!-- 左侧 主栏 -->
+            <div class="col-xs-12 col-md-9">
+
+                <!-- 购物车列表 -->
+                <div class="cart_table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="checkinput-all"><label><input type="checkbox"></label></th>
+                                <th colspan="2">全选</th>
+                                <th class="count hidden-xs">数量</th>
+                                <th class="price hidden-xs hidden-xs">价格</th>
+                                <th class="operation hidden-xs">操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <!-- 一个卖家循环 -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="checkinput-all"><label><input type="checkbox"></label></th>
+                                <th colspan="5"><a href="#">卖家</a></th>
+                            </tr>
+                        </thead>
+                        <!-- 一个商品循环 -->
+                        <tbody class="commodity-tr">
+                            <tr>
+                                <td class="checkinput"><label><input type="checkbox"></label></td>
+                                <td class="pic"><a href="#"><img src=""></td>
+                                <td class="name"><a href="#">iphone 5s - 全新带包装 3折出公司福利5.3寸大屏双卡双待手机大屏双卡双待手机</a></td>
+                                <td class="count"><input type="number"></td>
+                                <td class="price">&yen;88</td>
+                                <td class="operation"><a href="#">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td class="checkinput"><label><input type="checkbox"></label></td>
+                                <td class="pic"><a href="#"><img src=""></td>
+                                <td class="name"><a href="#">iphone 5s - 全新带包装 3折出公司福利5.3寸大屏双卡双待手机大屏双卡双待手机</a></td>
+                                <td class="count"><input type="number"></td>
+                                <td class="price">&yen;88</td>
+                                <td class="operation"><a href="#">删除</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 合计 -->
+    <div class="container total-row">
+        <div class="row">
+            <div class="col-xs-12 col-md-9">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td class="price">运费：<span class="color-red">&yen;<em>8</em><span></td>
+                            <td class="total-price">合计：<span class="color-red">&yen;<em>99</em><span></td>
+                            <td class="operation"><a href="#" class="btn btn-success active" role="button">去结算</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    </div>
+    <!--/.container-->
+
+
+</body>
+
+
+<script src="/javascripts/jquery-2.1.0.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/nostore.page.home.js"></script>
+<script src="/javascripts/holder.min.js"></script>
+
+</body>
+
+</html>

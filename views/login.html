@@ -1,28 +1,51 @@
-<% include header.html %>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
 
-    <link rel="stylesheet" href="/stylesheets/nostore.login.css">
-
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.list.css">
 </head>
 
-<body class="container">
-    <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+<body>
+    <div class="container row-offcanvas row-offcanvas-left">
 
-    <div class="row">
-        <form class="col-md-12" role="form" method="post">
-            <h1>用户登陆</h1>
-            <%- message %>
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <button type="submit" class="btn btn-default">登陆</button>
-        </form>
+        <div class="row">
+            <form class="col-md-12" role="form" method="post">
+                <h1>用户登陆</h1>
+                <%- message %>
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-default">登陆</button>
+            </form>
+        </div>
+
     </div>
 
-    <% include footer.html %>
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    </div>
+    <!--/.container-->
+
+
+</body>
+
+<% include mod.script.html %>
+
+</body>
+
+</html>
