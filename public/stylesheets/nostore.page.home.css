@@ -1,4 +1,7 @@
  /* 热门推荐 */
+ 
+    .hot_img1 { height: 335px; min-height: 335px; overflow: hidden; }
+    .hot_imgs { height: 160px; min-height: 160px; overflow: hidden; }
  @media screen and (max-width: 767px) {
      .mod_hot .panel-body {
          position: relative;
@@ -14,6 +17,10 @@
          display: inline-block;
          float: none;
      }
+     .hot_img1 { height: 160px; min-height: 160px; overflow: hidden; }
+    .hot_imgs { height: 160px; min-height: 160px; overflow: hidden; }
+    .list-good,
+    .list-good h5 { font-size: 12px; }
  }
  .mod_hot .panel-body {
     padding-bottom: 5px;

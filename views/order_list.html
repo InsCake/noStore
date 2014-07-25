@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.order.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <% include mod.nav.s2_return.html %>
+
+        <!-- 首页主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- 面包屑 -->
+        <div class="row hidden-xs">
+            <ol class="col-sm-12 breadcrumb">
+                <li><a href="/"><img src="/images/logo.png" style="width:70px;"></a>
+                </li><li><a href="/usercenter">个人中心</a>
+                </li>
+                <li class="active">我的订单</li>
+            </ol>
+        </div>
+
+        <div class="row">
+            <!-- 左侧 功能栏 -->
+            <div class="sidebar_op col-xs-12 col-sm-3 col-lg-2 hidden-xs">
+                <div class="list-group">
+                  <a href="/usercenter" class="list-group-item">个人中心</a>
+                  <a href="/userpassword" class="list-group-item">修改密码</a>
+                  <a href="/address" class="list-group-item">我的收获地址</a>
+                </div>
+                <div class="list-group">
+                  <a href="/cart" class="list-group-item">购物车</a>
+                  <a href="/orderlist" class="list-group-item active">订单</a>
+                  <a href="/likes" class="list-group-item">喜欢的</a>
+                </div>
+            </div>
+            <!-- 左侧 主栏 -->
+            <div class="col-xs-12 col-md-9">
+
+                <div class="order_table">
+                    <!-- 收货信息 -->
+                    <table class="orderlist_table table">
+                        <thead>
+                            <tr>
+                                <th class="order_img">订单商品</th>
+                                <th class="order_step">订单状态</th>
+                                <th class="order_price">总金额</th>
+                                <th class="order_operation">操作</th>
+                            </tr>
+                        </thead>
+                        <% for (var i = 0; i < orders.length; i++) { %>
+                        <tbody class="one_order">
+                            <tr>
+                                <td colspan="4">订单编号：<a href="/orderdetail/<%= orders[i].order_id %>"><%= orders[i].order_id %></a>&nbsp;&nbsp;&nbsp;&nbsp;提交日期：<%= orders[i].order_time %></td>
+                            </tr>
+                            <tr>
+                                <td class="order_img">
+                                    <% var pics_url = orders[i].commodity_pic_urls.split(';'); %>
+                                    <img src="<%= pics_url[0] %>">
+                                </td>
+                                <td class="order_step"><span><%= orders[i].order_step.slice(3) %></span></td>
+                                <td class="order_price">
+                                    <span>&yen;<em><%= orders[i].order_total_price %></em></span><br>
+                                    <span><%= orders[i].order_pay_method %></span>
+                                </td>
+                                <td class="order_operation">
+                                    <% if (orders[i].order_step.slice(0, 2) == 's2') { %>
+                                        <a href="/finishorder?id=<%= orders[i].order_id %>">确认收货</a>&nbsp;
+                                        <a href="/returnorder?id=<%= orders[i].order_id %>">退货</a>
+                                    <% } else if (orders[i].order_step.slice(0, 2) == 's9' || orders[i].order_step.slice(0, 2) == 's0' || orders[i].order_step.slice(0, 2) == 's6' || orders[i].order_step.slice(0, 2) == 's5') { %>
+                                        <a href="/orderdetail/<%= orders[i].order_id %>">订单详情</a><br>
+                                    <% } else { %>
+                                        <a href="/orderdetail/<%= orders[i].order_id %>">订单详情</a><br>
+                                        <a href="/cancelorder?id=<%= orders[i].order_id %>">取消订单</a>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <% } %>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    </div>
+    <!--/.container-->
+
+
+</body>
+
+<% include mod.script.html %>
+<script src="/javascripts/nostore.page.order.js"></script>
+<script src="/javascripts/holder.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.user.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <% include mod.nav.s2_return.html %>
+
+        <!-- 首页主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- 面包屑 -->
+        <div class="row hidden-xs">
+            <ol class="col-sm-12 breadcrumb">
+                <li><a href="/"><img src="/images/logo.png" style="width:70px;"></a>
+                </li><li><a href="/usercenter">个人中心</a>
+                </li>
+                <li class="active">我的收货地址</li>
+            </ol>
+        </div>
+
+        <div class="address row">
+            <!-- 左侧 功能栏 -->
+            <div class="sidebar_op col-xs-12 col-sm-3 col-lg-2 hidden-xs">
+                <div class="list-group">
+                  <a href="/usercenter" class="list-group-item">个人中心</a>
+                  <a href="/userpassword" class="list-group-item">修改密码</a>
+                  <a href="/address" class="list-group-item active">我的收获地址</a>
+                </div>
+                <div class="list-group">
+                  <a href="/cart" class="list-group-item">购物车</a>
+                  <a href="/orderlist" class="list-group-item">订单</a>
+                  <a href="/likes" class="list-group-item">喜欢的</a>
+                </div>
+            </div>
+            <!-- 中部 用户信息 -->
+            <div class="user_main col-xs-12 col-sm-9 col-lg-10">
+                <div class="order_table">
+                    <!-- 收货信息 -->
+                    <table class="address table">
+                        <thead>
+                            <tr>
+                                <th class="" colspan="4">收货地址管理</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (var i = 0; i < addresses.length; i++) { %>
+                            <tr class="address_id_<%= addresses[i].address_id %>">
+                                <td><label class="address_name"><%= addresses[i].address_sign_name %></label></td>
+                                <td><label class="address_detail"><%= addresses[i].address_address %>,<%= addresses[i].address_phone %></label></td>
+                                <td><label><a href="#" class="update_address_btn" role="button">修改</a>&nbsp;<a href="/deleteAddress?id=<%= addresses[i].address_id %>">删除</a></label></td>
+                            </tr>
+                            <% } %>
+                            <tr>
+                                <td></td>
+                                <td colspan="3">
+                                    <a href="#" data-toggle="modal" data-target="#modal_add_address">+ 新的收货地址</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal ~~~~~~~~~~~~~~~~~~~~ -->
+    <div class="modal fade" id="msg_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>密码修改成功</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">好</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 弹窗 - 添加收货地址 -->
+    <div class="modal fade" id="modal_add_address" tabindex="-1" role="dialog" aria-hidden="true">
+        <form class="modal-dialog" role="form" method="post" action="/addAddress">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加收货地址</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="add_sign_name">收货人姓名</label>
+                        <input type="text" class="form-control" id="add_sign_name" name="add_sign_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="add_address_detail">收货地址</label>
+                        <input type="text" class="form-control" id="add_address_detail" name="add_address_detail">
+                    </div>
+                    <div class="form-group">
+                        <label for="add_phone">联系电话</label>
+                        <input type="text" class="form-control" id="add_phone" name="add_phone">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">添加地址</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 弹窗 - 添加收货地址 -->
+    <div class="modal fade" id="modal_update_address" tabindex="-1" role="dialog" aria-hidden="true">
+        <form class="modal-dialog" role="form" method="post" action="/updateAddress">
+            <input type="hidden" class="form-control" id="add_id" name="add_id">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">修改收货地址</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="add_sign_name">收货人姓名</label>
+                        <input type="text" class="form-control" id="add_sign_name" name="add_sign_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="add_address_detail">收货地址</label>
+                        <input type="text" class="form-control" id="add_address_detail" name="add_address_detail">
+                    </div>
+                    <div class="form-group">
+                        <label for="add_phone">联系电话</label>
+                        <input type="text" class="form-control" id="add_phone" name="add_phone">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认修改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    </div>
+    <!--/.container-->
+
+
+
+</body>
+
+    <% include mod.script.html %>
+    <script src="/javascripts/nostore.page.user.js"></script>
+
+</body>
+
+</html>

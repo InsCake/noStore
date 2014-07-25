@@ -8,24 +8,22 @@
 
 <head>
     <% include mod.head.html %>
-    <link rel="stylesheet" href="/stylesheets/nostore.page.list.css">
 </head>
 
 <body>
     <div class="container row-offcanvas row-offcanvas-left">
 
         <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <% include mod.nav.s1_main.html %>
+        <% include mod.nav.s2_return.html %>
 
         <!-- 首页主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- 面包屑 -->
         <div class="row hidden-xs">
-            <ol class="col-sm-9 breadcrumb">
-                <li><a href="#">Home</a>
+            <ol class="col-sm-12 breadcrumb">
+                <li><a href="/"><img src="/images/logo.png" style="width:70px;"></a>
                 </li>
-                <li><a href="#">Library</a>
+                <li>商品列表
                 </li>
-                <li class="active">Data</li>
             </ol>
         </div>
 
@@ -36,8 +34,8 @@
                 <!-- 首页列表 -->
                 <div class="mod_list_home">
                     <div class="btn-group">
-                        <a href="<%= req_path + '?key=' + req_query.key %>&sort=time_pub" class="btn btn-default" role="button">最新</a>
-                        <a href="<%= req_path + '?key=' + req_query.key %>&sort=viewed" class="btn btn-default" role="button">人气</a>
+                        <a href="<%= req_path + '?key=' + req_query.key %>&sort=time_pub desc" class="btn btn-default" role="button">最新</a>
+                        <a href="<%= req_path + '?key=' + req_query.key %>&sort=visit desc" class="btn btn-default" role="button">人气</a>
                         <a href="<%= req_path + '?key=' + req_query.key %>&sort=price" class="btn btn-default" role="button">价格</a>
                     </div>
                     <div class="panel panel-default">
@@ -45,9 +43,9 @@
 
                             <% for (var i = 0; i < commoditys.length; i++) { %>
                             <div class="row list-good">
-                                <a href="/detail/<%= commoditys[i].commodity_id %>" class="col-xs-4 col-sm-2">
+                                <a href="/detail/<%= commoditys[i].commodity_id %>" class="col-xs-4 col-sm-2" style="overflow:hidden;">
                                     <% var pics_url = commoditys[i].commodity_pic_urls.split(';'); %>
-                                    <img src="<%= pics_url[0] %>" width="75" height="75">
+                                    <img src="<%= pics_url[0] %>" height="75"> 
                                 </a>
                                 <div class="col-xs-8 col-sm-10">
                                     <a href="/detail/<%= commoditys[i].commodity_id %>">
@@ -98,7 +96,6 @@
 </body>
 
 <% include mod.script.html %>
-<script src="/javascripts/nostore.page.home.js"></script>
 <script src="/javascripts/holder.min.js"></script>
 
 </body>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.seller.css">
+</head>
+
+<body class="sell">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">卖家</a>
+        </div>
+        <a href="/sell/logout" role="button" class="btn btn-default navbar-btn pull-right">登出</a>
+        <button type="button" class="btn btn-default navbar-btn pull-right" data-toggle="modal" data-target="#modal_sell_info">个人信息</button>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal_addCommodity">发布新商品</button>
+                <div class="commodity_list mod_list_home">
+                    <% for (var i = 0; i < commoditys.length; i++) { %>
+                    <div class="row list-good commodity_<%= commoditys[i].commodity_id %>">
+                        <a href="/detail/<%= commoditys[i].commodity_id %>" class="col-xs-4 col-sm-2" style="overflow:hidden;">
+                            <% var pics_url = commoditys[i].commodity_pic_urls.split(';'); %>
+                            <img src="<%= pics_url[0] %>" height="75">
+                        </a>
+                        <div class="col-xs-7 col-sm-9">
+                            <a href="#">
+                                <h5 class="title"><%= commoditys[i].commodity_name %>&nbsp;-&nbsp;<%= commoditys[i].commodity_subtitle %></h5>
+                            </a>
+                            <div>
+                                <span class="seller">by
+                                    <a href="#"><%= commoditys[i].seller_name %></a>
+                                </span>
+                                <span class="position">
+                                    <a href="#"><%= commoditys[i].commodity_position %></a>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="price">
+                                    <em><%= commoditys[i].commodity_price %></em>元</span>
+                                </span>
+                                <span class="category">
+                                    <span><%= commoditys[i].commodity_category %></span>
+                                </span>
+                                <div class="detail_info" style="display:none;"><%= commoditys[i].commodity_detail_info %></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="/sell/rmvCommodity?id=<%= commoditys[i].commodity_id %>">删除</a>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-default">Primary</button>
+                <!-- 订单 -->
+                <div class="order_table">
+                    <table class="orderlist_table table">
+                        <thead>
+                            <tr>
+                                <th class="order_img">订单商品</th>
+                                <th class="order_step">订单状态</th>
+                                <th class="order_price">总金额</th>
+                                <th class="order_operation">操作</th>
+                            </tr>
+                        </thead>
+                        <% for (var i = 0; i < orders.length; i++) { %>
+                        <tbody class="one_order">
+                            <tr>
+                                <td colspan="4">订单编号：<a href="#" class="order_id"><%= orders[i].order_id %></a>&nbsp;&nbsp;&nbsp;&nbsp;提交日期：<%= orders[i].order_time %></td>
+                            </tr>
+                            <tr>
+                                <td class="order_img">
+                                    <% var pics_url = orders[i].commodity_pic_urls.split(';'); %>
+                                    <img src="<%= pics_url[0] %>">
+                                </td>
+                                <td class="order_step">
+                                    <%= orders[i].order_step.slice(3) %>
+                                </td>
+                                <td class="order_price">
+                                    <span>&yen;<em><%= orders[i].order_total_price %></em></span><br>
+                                    <span><%= orders[i].order_pay_method %></span>
+                                </td>
+                                <td class="order_operation">
+                                    <% if (orders[i].order_step.slice(0, 2) == 's1') { %>
+                                    <a href="/sell/ship?id=<%= orders[i].order_id %>">发货</a><br>
+                                    <a href="/sell/cancelorder?id=<%= orders[i].order_id %>">取消订单</a><br>
+                                    <% } else { %>
+                                    <a href="#" class="order_id">订单详情</a>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 添加新商品 -->
+    <div class="modal fade" id="modal_addCommodity" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content form-horizontal" role="form" method="post" action="/sell/addCommodity">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="c_name" class="col-sm-2 control-label">商品名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c_name" name="c_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_subtitle" class="col-sm-2 control-label">商品副标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c_subtitle" name="c_subtitle">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_price" class="col-sm-2 control-label">价格</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c_price" name="c_price">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_category" class="col-sm-2 control-label">类别</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c_category" name="c_category">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_school" class="col-sm-2 control-label">所在院校</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c_school" name="c_school">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_detail_info" class="col-sm-2 control-label">详细描述</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="3" id="c_detail_info" name="c_detail_info"></textarea>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 修改商品 -->
+    <div class="modal fade" id="modal_updateCommodity" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content form-horizontal" role="form" method="post" action="/sell/updateCommodity">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                        <input type="hidden" id="c1_id" name="c1_id">
+                        <div class="form-group">
+                            <label for="c1_name" class="col-sm-2 control-label">商品名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c1_name" name="c1_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c1_subtitle" class="col-sm-2 control-label">商品副标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c1_subtitle" name="c1_subtitle">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c1_price" class="col-sm-2 control-label">价格</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c1_price" name="c1_price">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c1_category" class="col-sm-2 control-label">类别</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c1_category" name="c1_category">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c1_school" class="col-sm-2 control-label">所在院校</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c1_school" name="c1_school">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c1_detail_info" class="col-sm-2 control-label">详细描述</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="3" id="c1_detail_info" name="c1_detail_info"></textarea>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_order_detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">订单详情</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="#" class="detail_iframe"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_sell_info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">卖家信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>用户名：</td>
+                                <td><%= seller.name %></td>
+                            </tr>
+                            <tr>
+                                <td>联系电话：</td>
+                                <td><%= seller.phone %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal_sell_password">修改密码</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_sell_password" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content form-horizontal" role="form" method="post" action="/sell/changepassword">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">修改密码</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="ori_password" class="col-sm-2 control-label">旧密码</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ori_password" name="ori_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password" class="col-sm-2 control-label">新密码</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="new_password" name="new_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password_again" class="col-sm-2 control-label">重复新密码</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="new_password_again" name="new_password_again">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </body>
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    <!--/.container-->
+
+    <% include mod.script.html %>
+    <script src="/javascripts/nostore.page.sell.manage.js"></script>
+
+    </body>
+
+</html>

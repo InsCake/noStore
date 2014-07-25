@@ -38,3 +38,9 @@
 @media screen and (min-width: 767px) {
 	.margin-up393 				{ margin-top: -393px; }
 }
+
+.like_btn { background-color: #FFD99A; border: none; box-shadow: 0 1px 1px #ccc; }
+.share_btn { background-color: #FFE6BD; border: none; box-shadow: 0 1px 1px #ccc; }
+.jubao_btn { background-color: #FFF2DB; border: none; box-shadow: 0 1px 1px #ccc; }
+#buyOnline { background-color: #FFC09E; border: none; box-shadow: 0 1px 1px #ccc; }
+.call_btn { border:none; }

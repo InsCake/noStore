@@ -20,8 +20,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 body { padding-top: 50px; }
+body.sell,
+body.bk { padding-top: 60px; }
 footer { padding: 30px 0; }
 em { font-style: normal; }
+
+.container  { min-height: 500px; }
 
 /* color -------------------------- */
 .color-red      { color: #c00; } 
@@ -31,6 +35,7 @@ em { font-style: normal; }
 .off-padding    { padding: 0; }
 
 /*navgation -------------------------- */
+.navbar_user                         { min-height: 40px; box-shadow: 0 1px 2px #aaa; background-color: rgba(90, 90, 90, 0.95); }
 .navbar                         { min-height: 40px; box-shadow: 0 1px 2px #aaa; background-color: rgba(255, 255, 255, 0.95); }
 .navbar-fixed-top .btn-group    { padding: 0; }
 @media(max-width:768px) { 
@@ -38,4 +43,11 @@ em { font-style: normal; }
 }
 
 /* mod -------------------------- */
-.mod_list_home .list-good { padding: 5px 0; border-top: 1px dashed #eee; }
+.mod_list_home .list-good { padding: 5px 0; border-top: 1px dashed #ddd; padding: 15px 0; }
+.mod_list_home .list-good h5    { margin-top: 6px; }
+
+
+.navbar_user a,
+.navbar_user button  { height: 40px; background-color: #555; color: #fff; border: none; font-weight: bold; }
+.navbar_user input[name=key] { background-color: #eee; border:none; height: 40px; }
+.navbar_user .hidden-sm a { line-height: 30px; }

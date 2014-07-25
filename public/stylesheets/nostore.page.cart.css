@@ -8,14 +8,14 @@
 .cart_table .checkinput-all			{ width: 30px; text-align: center; vertical-align: middle; }
 .cart_table .checkinput label   	{ width: 15px; height: 80px; line-height: 80px; }
 .cart_table .checkinput-all label	{ width: 15px; height: 14px; line-height: 14px; }
-.cart_table .pic 					{ width: 90px; text-align: center; vertical-align: middle; }
-.cart_table .pic img 				{ width: 80px; height: 80px; }
+.cart_table .pic 					{ width: 90px; text-align: center; vertical-align: middle; overflow: hidden; }
+.cart_table .pic img 				{ width: 80px; }
 .cart_table .name 					{ vertical-align: middle; }
 .cart_table .name a 				{ display: block; max-height: 16px; overflow: hidden; }
 .cart_table .count,
 .cart_table .price,
 .cart_table .operation 			{ width: 85px; text-align: center; vertical-align: middle; }
-.cart_table .count input  		{ width: 40px; }
+.cart_table .count input  		{ width: 40px; text-align: center; }
 
 @media screen and (max-width: 767px) {
 	.cart_table .commodity-tr .name 			{ display: block; }
@@ -26,10 +26,10 @@
 }
 
 /* total row */
-.total-row 					{ position: fixed; bottom: 0; left: 0; right: 0; font-size: 12px; }
+.total-row 					{ min-height: 30px!important; position: fixed; bottom: 0; left: 0; right: 0; font-size: 12px; background-color: #fff; }
 .total-row .table 			{ margin: 0; }
 .total-row .price,
 .total-row .operation  		{ width: 85px; text-align: center; vertical-align: middle; }
 .total-row .price em		{ font-size: 16px; font-weight: 300; }
-.total-row .total-price		{ width: 96px; text-align: left; vertical-align: middle; }
+.total-row .total-price		{ width: 105px; text-align: left; vertical-align: middle; }
 .total-row .total-price em	{ font-size: 16px; font-weight: 300; vertical-align: 0px; }

@@ -20,12 +20,12 @@
         <!-- 主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- 面包屑 -->
         <div class="row hidden-xs">
-            <ol class="col-sm-9 breadcrumb">
-                <li><a href="#">Home</a>
+            <ol class="col-sm-12 breadcrumb">
+                <li><a href="/"><img src="/images/logo.png" style="width:70px;"></a>
                 </li>
-                <li><a href="#">Library</a>
+                <li><a href="#">商品详情</a>
                 </li>
-                <li class="active">Data</li>
+                <li class="active"><%= commodity.commodity_name %></li>
             </ol>
         </div>
 
@@ -64,9 +64,10 @@
                     <div class="panel-heading">
                         <h1><%= commodity.commodity_name %>&nbsp;-&nbsp;<%= commodity.commodity_subtitle %></h1>
                         <div class="tag">
-                            <% for (var i = 0; i < topics.length; i++) { %>
+                            <% if (topics) {
+                            for (var i = 0; i < topics.length; i++) { %>
                                 <a href="#">#<%= topics[i].topic_name %></a>
-                            <% } %>
+                            <% } } %>
                         </div>
                     </div>
                     <div class="panel-body">
@@ -85,19 +86,19 @@
                             </span>
                         </div>
                         <div class="like col-xs-2 col-sm-5 off-padding">
-                            <button type="button" class="btn btn-default btn-block"><span><%= likes_count %></span>喜欢</button>
+                            <a href="/dolike?commodity_id=<%= commodity.commodity_id %>" role="button" class="btn btn-default btn-block like_btn"><% if (likes_count) { %><span><%= likes_count %></span><% } %>喜欢</a>
                         </div>
                         <div class="share col-xs-2 col-sm-5 off-padding">
-                            <button type="button" class="btn btn-default btn-block">分享</button>
+                            <button type="button" class="btn btn-default btn-block share_btn">分享</button>
                         </div>
                         <div class="complaint col-xs-2 col-sm-2 hidden-xs off-padding">
-                            <button type="button" class="btn btn-default btn-block">举报</button>
+                            <button type="button" class="btn btn-default btn-block jubao_btn" data-toggle="modal" data-target="#Modal_report">举报</button>
                         </div>
                         <div class="buy-online col-xs-4 col-sm-12 off-padding">
-                            <button type="button" class="btn btn-default btn-block">线上购买</button>
+                            <button type="button" class="btn btn-default btn-block" id="buyOnline" data-toggle="modal" data-target="#addCartModal">线上购买</button>
                         </div>
                         <div class="call col-xs-12 off-padding">
-                            <button type="button" class="btn btn-default">CALL</button>
+                            <button type="button" class="btn btn-default call_btn">CALL</button>
                             <span><%= commodity.seller_phone %></span>
                         </div>
                     </div>
@@ -108,7 +109,7 @@
                 <div class="detail_more">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">
-                        <li><a href="#detail-info" data-toggle="tab">详细信息</a>
+                        <li class="active"><a href="#detail-info" data-toggle="tab">详细信息</a>
                         </li>
                         <li><a href="#discuss" data-toggle="tab">讨论</a>
                         </li>
@@ -116,8 +117,24 @@
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div class="tab-pane active" id="detail-info"><%= commodity.commodity_detail_info %></div>
-                        <div class="tab-pane" id="discuss">讨论...</div>
+                        <div class="tab-pane active" id="detail-info" style="padding: 10px 0;"><%= commodity.commodity_detail_info %></div>
+                        <div class="tab-pane" id="discuss">
+                            <% if (comments) {
+                            for (var i = 0; i < comments.length; i++) { %>
+                            <div class="clearfix" style="border-bottom:1px dotted #eee;">
+                                <div style="padding:10px;float:left;text-align:center;">
+                                    <img src="/images/head.jpg" style="width:60px;height:60px;"><br>
+                                    <label><%= comments[i].user_name %></label><br>
+                                    <span><%= comments[i].comment_time %></span><br>
+                                </div>
+                                <p style="padding:10px;float:left;"><%= comments[i].comment_content %></p>
+                            </div>
+                            <% } } %>
+                            <form class="col-xs-12" method="post" action="/comment?id=<%= commodity.commodity_id %>">
+                                <textarea style="width:100%;margin:10px 0;height:80px;" name="comment" class="form-control"></textarea>
+                                <button type="submit" class="btn btn-default">发布</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,10 +152,46 @@
     <!--/.container-->
 
 
+    <!-- Modal 加购物车 -->
+    <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    该商品已成功加入购物车
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">继续购物</button>
+                    <a href="/cart" class="btn btn-primary" role="button">去购物车结算</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal 举报 -->
+    <div class="modal fade" id="Modal_report" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form role="form" method="post" action="/report?commodity_id=<%= commodity.commodity_id %>">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>举报理由</label>
+                            <textarea class="form-control" rows="4" name="content"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">确认举报</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
 </body>
 
 <% include mod.script.html %>
-<script src="/javascripts/nostore.page.home.js"></script>
+<script src="/javascripts/nostore.page.detail.js"></script>
 <script src="/javascripts/holder.min.js"></script>
 
 </body>

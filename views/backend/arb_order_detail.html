@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.order.css">
+</head>
+
+<body style="padding:0;">
+
+    <div class="order_table">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="" colspan="6">订单信息</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>订单编号</th><td><%= order.order_id %></td>
+                    <th>相关卖家</th><td><%= order.seller_name %></td>
+                    <th>相关买家</th><td><%= order.user_name %></td>
+                </tr>
+                <tr>
+                    <th>买家申请退货理由:</th>
+                    <td colspan="5"><%= order.order_message %></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="" colspan="6">订单商品</th>
+                </tr>
+            </thead>
+            <tbody class="commodity-tr">
+                <!-- 一个商品循环 -->
+                <% for (var i = 0; i < commoditys.length; i++) { %>
+                <tr id="commodity_1">
+                    <td class="checkinput"></td>
+                    <% var pics_url = commoditys[i].commodity_pic_urls.split(';'); %>
+                    <td class="pic"><a href="/detail/<%= commoditys[i].commodity_id %>"><img src="<%= pics_url[0] %>"></td>
+                    <td class="name"><a href="/detail/<%= commoditys[i].commodity_id %>"><%= commoditys[i].commodity_name %>&nbsp;-&nbsp;<%= commoditys[i].commodity_subtitle %></a></td></a></td>
+                    <td class="count"><input type="number" value="1" readonly></td>
+                    <td class="price">&yen;<%= commoditys[i].commodity_price %></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    </div>
+
+    
+    <% include mod.script.html %>
+
+</body>
+
+</html>

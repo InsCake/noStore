@@ -15,21 +15,33 @@
     <div class="container">
 
         <!-- 顶部导航 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <% include mod.nav.s1_main.html %>
+        <% include mod.nav.s2_return.html %>
 
         <!-- 首页主体 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- 面包屑 -->
         <div class="row hidden-xs">
-            <ol class="col-md-9 breadcrumb">
-                <li><a href="#">Home</a>
+            <ol class="col-sm-12 breadcrumb">
+                <li><a href="/"><img src="/images/logo.png" style="width:70px;"></a>
+                </li><li><a href="/usercenter">个人中心</a>
                 </li>
-                <li><a href="#">Library</a>
-                </li>
-                <li class="active">Data</li>
+                <li class="active">购物车</li>
             </ol>
         </div>
 
         <div class="row">
+            <!-- 左侧 功能栏 -->
+            <div class="sidebar_op col-xs-12 col-sm-3 col-lg-2 hidden-xs">
+                <div class="list-group">
+                  <a href="/usercenter" class="list-group-item">个人中心</a>
+                  <a href="/userpassword" class="list-group-item">修改密码</a>
+                  <a href="/address" class="list-group-item">我的收获地址</a>
+                </div>
+                <div class="list-group">
+                  <a href="/cart" class="list-group-item active">购物车</a>
+                  <a href="/orderlist" class="list-group-item">订单</a>
+                  <a href="/likes" class="list-group-item">喜欢的</a>
+                </div>
+            </div>
             <!-- 左侧 主栏 -->
             <div class="col-xs-12 col-md-9">
 
@@ -38,7 +50,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="checkinput-all"><label><input type="checkbox"></label></th>
+                                <th class="checkinput-all"><label><input type="checkbox" checked disabled></label></th>
                                 <th colspan="2">全选</th>
                                 <th class="count hidden-xs">数量</th>
                                 <th class="price hidden-xs hidden-xs">价格</th>
@@ -47,33 +59,30 @@
                         </thead>
                     </table>
                     <!-- 一个卖家循环 -->
+                    <% for (var i = 0; i < cart_array.length; i++) { %>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="checkinput-all"><label><input type="checkbox"></label></th>
-                                <th colspan="5"><a href="#">卖家</a></th>
+                                <th class="checkinput-all"><label><input type="checkbox" checked disabled></label></th>
+                                <th colspan="5"><a href="#"><%= cart_array[i][0].seller_name %></a></th>
                             </tr>
                         </thead>
-                        <!-- 一个商品循环 -->
                         <tbody class="commodity-tr">
-                            <tr>
-                                <td class="checkinput"><label><input type="checkbox"></label></td>
-                                <td class="pic"><a href="#"><img src=""></td>
-                                <td class="name"><a href="#">iphone 5s - 全新带包装 3折出公司福利5.3寸大屏双卡双待手机大屏双卡双待手机</a></td>
-                                <td class="count"><input type="number"></td>
-                                <td class="price">&yen;88</td>
-                                <td class="operation"><a href="#">删除</a></td>
+                            <!-- 一个商品循环 -->
+                            <% for (var j = 0; j < cart_array[i].length; j++) { %>
+                            <tr id="commodity_<%= cart_array[i][j].commodity_id %>">
+                                <td class="checkinput"><label><input type="checkbox" checked disabled></label></td>
+                                <% var pics_url = cart_array[i][j].commodity_pic_urls.split(';'); %>
+                                <td class="pic"><a href="/detail/<%= cart_array[i][j].commodity_id %>"><img src="<%= pics_url[0] %>"></td>
+                                <td class="name"><a href="/detail/<%= cart_array[i][j].commodity_id %>"><%= cart_array[i][j].commodity_name %>&nbsp;-&nbsp;<%= cart_array[i][j].commodity_subtitle %></a></td>
+                                <td class="count"><input type="number" value="1" readonly></td>
+                                <td class="price c_price">&yen;<em><%= cart_array[i][j].commodity_price %></em></td>
+                                <td class="operation"><a href="/rmvFromCart?commodity_id=<%= cart_array[i][j].commodity_id %>">删除</a></td>
                             </tr>
-                            <tr>
-                                <td class="checkinput"><label><input type="checkbox"></label></td>
-                                <td class="pic"><a href="#"><img src=""></td>
-                                <td class="name"><a href="#">iphone 5s - 全新带包装 3折出公司福利5.3寸大屏双卡双待手机大屏双卡双待手机</a></td>
-                                <td class="count"><input type="number"></td>
-                                <td class="price">&yen;88</td>
-                                <td class="operation"><a href="#">删除</a></td>
-                            </tr>
+                            <% } %>
                         </tbody>
                     </table>
+                    <% } %>
 
                 </div>
 
@@ -84,14 +93,16 @@
     <!-- 合计 -->
     <div class="container total-row">
         <div class="row">
+            <div class="col-xs-12 col-sm-2 hidden-xs">
+            </div>
             <div class="col-xs-12 col-md-9">
                 <table class="table">
                     <tbody>
                         <tr>
                             <td></td>
-                            <td class="price">运费：<span class="color-red">&yen;<em>8</em><span></td>
-                            <td class="total-price">合计：<span class="color-red">&yen;<em>99</em><span></td>
-                            <td class="operation"><a href="#" class="btn btn-success active" role="button">去结算</a></td>
+                            <td class="price">运费：<span class="color-red">&yen;<em>0</em><span></td>
+                            <td class="total-price">合计：<span class="color-red">&yen;<em>0</em><span></td>
+                            <td class="operation"><a href="/order" class="btn btn-success active" role="button">去结算</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -101,22 +112,14 @@
 
     </div>
 
-    <hr>
-
-    <footer>
-        <p>© Company 2013</p>
-    </footer>
-
     </div>
     <!--/.container-->
 
 
 </body>
 
-
-<script src="/javascripts/jquery-2.1.0.min.js"></script>
-<script src="/javascripts/bootstrap.min.js"></script>
-<script src="/javascripts/nostore.page.home.js"></script>
+<% include mod.script.html %>
+<script src="/javascripts/nostore.page.cart.js"></script>
 <script src="/javascripts/holder.min.js"></script>
 
 </body>

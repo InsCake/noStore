@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.order.css">
+</head>
+
+<body style="padding:0;">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row detail_commdity-pic">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <% var pics_url = commodity.commodity_pic_urls.split(';');
+                        for (var i = 0; i < pics_url.length - 1; i++) {
+                            if (i === 0) { %>
+                            <div class="item active">
+                                <img src="<%= pics_url[i] %>" alt="..." style="height:200px;margin:0 auto;">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+                            <% } else { %>
+                            <div class="item">
+                                <img src="<%= pics_url[i] %>" alt="..." style="height:200px;margin:0 auto;">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="order_table">
+        <table class="table">
+            <thead>
+                <tr><th></th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4"><strong><%= commodity.commodity_name %>&nbsp;-&nbsp;<%= commodity.commodity_subtitle %></strong></td>
+                </tr>
+                <tr>                    
+                    <th>价格</th>
+                    <td><%= commodity.commodity_price %></td>
+                    <th>发布日期</th>
+                    <td><%= commodity.commodity_time_pub %></td>
+                </tr>
+                <tr>                    
+                    <th>分类</th>
+                    <td><%= commodity.commodity_category %></td>
+                    <th>学校</th>
+                    <td><%= commodity.commodity_position %></td>
+                </tr>
+                <tr>                    
+                    <th>价格</th>
+                    <td colspan="3"><div><%= commodity.commodity_detail_info %></div></td>
+                </tr>
+                <tr>                    
+                    <th>审核状态</th>
+                    <td colspan="3"><%= commodity.commodity_status %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <% include mod.script.html %>
+
+</body>
+
+</html>

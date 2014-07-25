@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <% include mod.head.html %>
+    <link rel="stylesheet" href="/stylesheets/nostore.page.seller.css">
+</head>
+
+<body class="bk">
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">平台运维</a>
+        </div>
+        <a href="/backend/" class="btn btn-default navbar-btn" role="button">商品审核</a>
+        <a href="/backend/arbitration" class="btn btn-default navbar-btn" role="button">交易仲裁</a>
+        <a href="/backend/credit" class="btn btn-default navbar-btn" role="button">信用评级</a>
+        <a href="/backend/logout" class="btn btn-default navbar-btn pull-right"role="button">登出</a>
+        <button type="button" class="btn btn-default navbar-btn pull-right" data-toggle="modal" data-target="#modal_sell_info">个人信息</button>
+    </nav>
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- 左侧 主栏 -->
+            <div class="col-xs-12 col-md-9">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#arb_todo" data-toggle="tab">待仲裁</a></li>
+                    <li><a href="#arb_done" data-toggle="tab">已仲裁</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="arb_todo">
+                        <table class="table" style="text-align:center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Id</th>
+                                    <th style="text-align:center;">卖家</th>
+                                    <th style="text-align:center;">买家</th>
+                                    <th style="text-align:center;">日期</th>
+                                    <th style="text-align:center;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (var i = 0; i < orders.length; i++) { %>
+                                <tr id="o_<%= orders[i].order_id %>">
+                                    <td><%= orders[i].order_id %></td>
+                                    <td><%= orders[i].seller_name %></td>
+                                    <td class="user_name" id="user_<%= orders[i].user_id %>"><%= orders[i].user_name %></td>
+                                    <td><%= orders[i].commodity_name %>&nbsp;-&nbsp;<%= orders[i].commodity_subtitle %></td>
+                                    <td><a href="#" class="arb_detail_btn">查看详情</a></td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="arb_done">
+                        <table class="table" style="text-align:center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Id</th>
+                                    <th style="text-align:center;">卖家</th>
+                                    <th style="text-align:center;">买家</th>
+                                    <th style="text-align:center;">商品</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (var i = 0; i < done_orders.length; i++) { %>
+                                <tr id="o_<%= done_orders[i].order_id %>">
+                                    <td><%= done_orders[i].order_id %></td>
+                                    <td><%= done_orders[i].seller_name %></td>
+                                    <td><%= done_orders[i].user_name %></td>
+                                    <td><%= done_orders[i].commodity_name %>&nbsp;-&nbsp;<%= done_orders[i].commodity_subtitle %></td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <hr>
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+    <!--/.container-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_arb_detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">订单仲裁</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="600px" style="border:0;"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-danger" id="arb_seller_btn">判定买家收货</a>
+                    <a href="#" class="btn btn-danger" id="arb_user_btn">判定卖家退款</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <% include mod.script.html %>
+    <script src="/javascripts/nostore.page.backend.arbitration.js"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,43 @@
+/* order - page ------------------ */
+/* order table */
+.order_table table 					{ margin-bottom: 20px; font-size: 12px; }
+.order_table table tbody tr td,
+.order_table table thead tr th		{ border: 0; }
+.order_table tr						{ border-top: 1px dashed #eee; }
+.order_table thead:first-child tr 	{ border-top: 1px solid #ddd; }
+
+.order_table .pic 					{ width: 90px; text-align: center; vertical-align: middle; overflow: hidden; }
+.order_table .pic img 				{ width: 80px; }
+.order_table .name 					{ vertical-align: middle; }
+.order_table .name a 				{ display: block; max-height: 16px; overflow: hidden; }
+.order_table .count,
+.order_table .price,
+.order_table .operation 			{ width: 85px; text-align: center; vertical-align: middle; }
+.order_table .count input  			{ width: 40px; text-align: center; }
+
+@media screen and (max-width: 767px) {
+	.cart_table .commodity-tr .name 			{ display: block; }
+	.cart_table .commodity-tr .name a 		{ height: 32px; max-height: 32px; }
+	.cart_table .commodity-tr .count,
+	.cart_table .commodity-tr .price,
+	.cart_table .commodity-tr .operation 		{ display: block; float: left; width: 55px; text-align: center; }
+}
+
+/* total row */
+.settlement .price,
+.settlement .operation  		{ width: 85px; text-align: center; vertical-align: middle; }
+.settlement .price em			{ font-size: 16px; font-weight: 300; }
+.settlement .total-price		{ width: 105px; text-align: left; vertical-align: middle; }
+.settlement .total-price em		{ font-size: 16px; font-weight: 300; vertical-align: 0px; }
+
+/* order list - page ------------------ */
+/* order list tabel */
+.orderlist_table tbody.one_order	{ border-top: 1px solid #eee; }
+.orderlist_table td,
+.orderlist_table th 				{ width: 25%; }
+
+.orderlist_table .order_img 		{ overflow: hidden; }
+.orderlist_table .order_img img		{ height: 50px; vertical-align: middle; }
+.orderlist_table .order_step,
+.orderlist_table .order_price,
+.orderlist_table .order_operation		{ vertical-align: middle; text-align: center; }
